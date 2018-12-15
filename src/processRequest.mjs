@@ -325,7 +325,8 @@ export const processRequest = (
         )
     })
 
-    request.pipe(parser)
+    if (request.rawBody) parser.end(request.rawBody)
+    else request.pipe(parser)
   })
 
 /**
